@@ -1,58 +1,95 @@
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  background: #f6f6f6;
 }
 
 header {
-  background-color: #fdf6f0;
-  padding: 1rem;
-  text-align: center;
+  background: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid #ddd;
 }
 
-main {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: auto;
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
-.toolbar button,
-.pagination button {
-  margin: 0.25rem;
-  padding: 0.5rem 1rem;
-  background-color: #ffb7c5;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.toolbar button:hover,
-.pagination button:hover {
-  background-color: #ffa2b1;
-}
-
-.options {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+main.editor-wrapper {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  height: calc(100vh - 140px);
 }
 
-#canvasContainer {
-  border: 1px solid #ccc;
-  background-color: white;
+.sidebar-left,
+.sidebar-right {
+  width: 200px;
   padding: 1rem;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-right {
+  border-left: 1px solid #ddd;
+  border-right: none;
+}
+
+.page-area {
+  flex: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
+  background: #fdfdfd;
+  padding: 2rem;
 }
 
-canvas {
-  border: 1px dashed #ccc;
+.page-layout {
+  position: relative;
+  display: flex;
+  width: 29.7cm;
+  height: 21cm;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.pagination {
-  margin-top: 1rem;
-  text-align: center;
+.page {
+  width: 50%;
+  height: 100%;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.center-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #eee;
+}
+
+footer {
+  height: 60px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
 }
