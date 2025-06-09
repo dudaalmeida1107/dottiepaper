@@ -1,60 +1,105 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DottiePaper</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <div class="logo">DottiePaper</div>
-    <button id="newPageBtn">+ Nova Página</button>
-  </header>
 
-  <main class="editor-wrapper">
-    <aside class="sidebar-left">
-      <button>Texto</button>
-      <button>Checklist</button>
-      <button>Anotação</button>
-      <button>Linha</button>
-      <button>Imagem</button>
-      <button>Data</button>
-    </aside>
+import { Calendar } from "@/components/ui/calendar";
+import { Card } from "@/components/ui/card";
 
-    <section class="page-area">
-      <div class="page-layout">
-        <div class="page left-page" id="leftPage"></div>
-        <div class="center-line"></div>
-        <div class="page right-page" id="rightPage"></div>
+const WeeklyPlannerTemplate = () => {
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const currentDate = new Date();
+  const monthYear = currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+  return (
+    <div className="p-8 space-y-6 bg-white min-h-full">
+      {/* Header */}
+      <div className="flex justify-between items-center border-b border-gray-200 pb-4">
+        <h1 className="text-3xl font-bold text-gray-800">{monthYear}</h1>
+        <div className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+          Weekly Planner
+        </div>
       </div>
-    </section>
 
-    <aside class="sidebar-right">
-      <label>Fonte
-        <select>
-          <option>Arial</option>
-          <option>Georgia</option>
-        </select>
-      </label>
+      <div className="grid grid-cols-2 gap-8">
+        {/* Left side - Calendar and Goals */}
+        <div className="space-y-6">
+          <Card className="p-6 border-gray-200 shadow-sm">
+            <h3 className="font-semibold mb-4 text-gray-700 text-center">Calendar Overview</h3>
+            <Calendar mode="single" className="w-full" />
+          </Card>
+          
+          {/* Goals section */}
+          <Card className="p-6 border-gray-200 shadow-sm">
+            <h3 className="font-semibold mb-4 text-gray-700 uppercase tracking-wide">Goals</h3>
+            <div className="space-y-3">
+              {[1, 2, 3, 4, 5].map((item) => (
+                <div key={item} className="flex items-center space-x-3">
+                  <div className="w-4 h-4 border-2 border-gray-300 rounded"></div>
+                  <div className="h-3 bg-gray-100 rounded flex-1"></div>
+                </div>
+              ))}
+            </div>
+          </Card>
+        </div>
 
-      <label>Tamanho
-        <input type="number" value="18" />
-      </label>
+        {/* Right side - Weekly schedule and Notes */}
+        <div className="space-y-6">
+          <Card className="p-6 border-gray-200 shadow-sm">
+            <h3 className="font-semibold mb-4 text-gray-700 text-center">This Week</h3>
+            <div className="grid grid-cols-7 gap-1 mb-4">
+              {days.map((day) => (
+                <div key={day} className="text-xs font-medium text-center p-2 text-gray-600">
+                  {day.slice(0, 3)}
+                </div>
+              ))}
+            </div>
+            
+            <div className="grid grid-cols-7 gap-1">
+              {Array.from({ length: 35 }).map((_, index) => (
+                <div key={index} className="aspect-square border border-gray-200 text-xs p-1 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                  {index < 31 ? index + 1 : ""}
+                </div>
+              ))}
+            </div>
+          </Card>
 
-      <label>Cor
-        <input type="color" value="#000000" />
-      </label>
+          {/* Notes section */}
+          <Card className="p-6 border-gray-200 shadow-sm">
+            <h3 className="font-semibold mb-4 text-gray-700 uppercase tracking-wide">Notes</h3>
+            <div className="space-y-3">
+              {[1, 2, 3, 4, 5, 6].map((item) => (
+                <div key={item} className="h-3 bg-gray-100 rounded"></div>
+              ))}
+            </div>
+          </Card>
+        </div>
+      </div>
 
-      <button>Exportar PDF</button>
-    </aside>
-  </main>
+      {/* Bottom section */}
+      <div className="grid grid-cols-2 gap-8 pt-4">
+        <Card className="p-6 border-gray-200 shadow-sm">
+          <h3 className="font-semibold mb-4 text-gray-700 uppercase tracking-wide">Tasks</h3>
+          <div className="space-y-3">
+            {[1, 2, 3, 4, 5].map((item) => (
+              <div key={item} className="flex items-center space-x-3">
+                <div className="w-4 h-4 border-2 border-gray-300 rounded"></div>
+                <div className="h-3 bg-gray-100 rounded flex-1"></div>
+              </div>
+            ))}
+          </div>
+        </Card>
 
-  <footer>
-    <button disabled>&larr; Página Anterior</button>
-    <button disabled>&rarr; Próxima Página</button>
-  </footer>
+        <Card className="p-6 border-gray-200 shadow-sm">
+          <h3 className="font-semibold mb-4 text-gray-700 uppercase tracking-wide">Priorities</h3>
+          <div className="space-y-3">
+            {[1, 2, 3, 4, 5].map((item) => (
+              <div key={item} className="flex items-center space-x-3">
+                <div className="w-4 h-4 bg-pink-500 rounded-full"></div>
+                <div className="h-3 bg-gray-100 rounded flex-1"></div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+};
 
-  <script src="script.js"></script>
-</body>
-</html>
+export default WeeklyPlannerTemplate;
