@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DottiePaper</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>DottiePaper - Planner Creator</h1>
+    </header>
+
+    <main>
+      <section class="toolbar">
+        <button onclick="addText()">+ Texto</button>
+        <button onclick="addChecklist()">✔ Checklist</button>
+        <button onclick="addNote()">📝 Anotação</button>
+        <button onclick="addLine()">➖ Linha</button>
+        <button onclick="clearCanvas()">🧼 Limpar</button>
+        <button onclick="deleteSelected()">🗑 Deletar</button>
+        <button onclick="exportPDF()">📄 Exportar PDF</button>
+        <button onclick="addNewPage()">+ Nova Página</button>
+        <input type="file" id="imageUpload" />
+      </section>
+
+      <section class="options">
+        <label>Fonte:
+          <select id="fontFamily">
+            <option value="Arial">Arial</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Courier New">Courier</option>
+          </select>
+        </label>
+
+        <label>Tamanho:
+          <input type="number" id="fontSize" value="18" min="8" max="72" />
+        </label>
+
+        <label>Cor:
+          <input type="color" id="fontColor" value="#000000" />
+        </label>
+      </section>
+
+      <section id="canvasContainer">
+        <canvas id="planner-canvas" width="1190" height="842"></canvas>
+      </section>
+
+      <section class="pagination">
+        <button id="prevPage" disabled onclick="prevPage()">⬅ Página Anterior</button>
+        <button id="nextPage" disabled onclick="nextPage()">➡ Próxima Página</button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
