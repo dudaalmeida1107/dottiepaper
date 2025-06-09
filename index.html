@@ -1,54 +1,165 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DottiePaper - Editor</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificador Semanal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #ddd;
+            padding: 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-page {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .weekly-layout {
+            display: grid;
+            grid-template-rows: repeat(6, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            height: 100%;
+        }
+
+        .day-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        .widgets {
+            margin-top: 20px;
+        }
+
+        .widget-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .widget {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>DottiePaper - Editor de Planner</h1>
-    <button id="addPageBtn">+ Nova Página</button>
-  </header>
-
-  <main>
-    <div class="toolbar">
-      <div class="button-group">
-        <button onclick="addText()">Texto</button>
-        <button onclick="addChecklist()">Checklist</button>
-        <button onclick="addNote()">Anotação</button>
-        <button onclick="addLine()">Linha</button>
-        <button onclick="addImage()">Imagem</button>
-        <button onclick="addDate()">Data</button>
-      </div>
-      <div class="font-controls">
-        <label for="fontSelect">Fonte</label>
-        <select id="fontSelect">
-          <option value="Arial">Arial</option>
-          <option value="Georgia">Georgia</option>
-          <option value="Courier New">Courier New</option>
-        </select>
-        <label for="fontSize">Tamanho</label>
-        <input type="number" id="fontSize" value="18" min="8" max="72" />
-        <label for="colorPicker">Cor</label>
-        <input type="color" id="colorPicker" value="#000000" />
-        <button onclick="exportPDF()">Exportar PDF</button>
-      </div>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Opções</h2>
+            <div>
+                <p>Show: 1 Column</p>
+                <button>Hide</button>
+            </div>
+            <div>
+                <p>Current Page: 1 | A5</p>
+                <button>Delete</button>
+            </div>
+            <button>Add</button>
+            <button>Insert</button>
+            <button>Duplicate Page</button>
+            <button>Dup+Run Dates</button>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <div>
+                    <button>&lt;</button>
+                    <span>Janeiro</span>
+                    <button>&gt;</button>
+                    <select>
+                        <option>2025</option>
+                    </select>
+                    <select>
+                        <option>Português</option>
+                    </select>
+                    <select>
+                        <option>Monday</option>
+                    </select>
+                    <select>
+                        <option>Short (Mon, 1)</option>
+                    </select>
+                    <input type="text" placeholder="Default">
+                </div>
+                <div>
+                    <button>Save/Export</button>
+                </div>
+            </div>
+            <div class="calendar-page">
+                <div class="weekly-layout">
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                </div>
+                <div class="weekly-layout">
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                    <div class="day-box"></div>
+                </div>
+            </div>
+            <div class="widgets">
+                <h3>Widgets</h3>
+                <div class="widget-grid">
+                    <div class="widget">Text Custom</div>
+                    <div class="widget">Quote Credit</div>
+                    <div class="widget">Dated Widget</div>
+                    <div class="widget">Horizontal Boxes</div>
+                    <div class="widget">Vertical Boxes</div>
+                    <div class="widget">Pocket Box #1</div>
+                    <div class="widget">Pocket Box #2</div>
+                    <div class="widget">Pocket Box #3</div>
+                    <div class="widget">Pocket Box #4</div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="canvas-container">
-      <canvas id="plannerCanvas" width="1169" height="827"></canvas>
-      <div class="center-guide"></div>
-    </div>
-
-    <div class="navigation">
-      <button id="prevPage" disabled>&larr; Página Anterior</button>
-      <button id="nextPage" disabled>Próxima Página &rarr;</button>
-    </div>
-  </main>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>
